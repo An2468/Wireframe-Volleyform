@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VollyForm — Full Wireframe Suite</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+
+  :root {
+    --bg-page:      #08080f;
+    --bg-deep:      #0b0b18;
+    --bg-mid:       #10102a;
+    --surface:      #14142a;
+    --surface2:     #1b1b38;
+    --surface3:     #222244;
+    --glow-border:  rgba(200,255,0,0.18);
+    --border:       #2a2a55;
+    --border-dim:   #1e1e3a;
+    --accent:       #c8ff00;
+    --accent-dim:   rgba(200,255,0,0.10);
+    --accent-glow:  rgba(200,255,0,0.25);
+    --accent2:      #00b4ff;
+    --accent2-dim:  rgba(0,180,255,0.10);
+    --danger:       #ff4040;
+    --danger-dim:   rgba(255,64,64,0.12);
+    --warn:         #ffaa00;
+    --success:      #00e676;
+    --text:         #f0f0ff;
+    --text-dim:     #7878aa;
+    --text-muted:   #2e2e55;
+
+    /* gradient backgrounds used across cards */
+    --grad-hero:    linear-gradient(140deg, #1a1a40 0%, #0d0d22 60%, #08080f 100%);
+    --grad-card:    linear-gradient(135deg, #1b1b38 0%, #14142a 100%);
+    --grad-accent:  linear-gradient(135deg, #c8ff00 0%, #a0d400 100%);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg-page);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    padding: 48px 24px 100px;
+  }
+
+  /* ─── PAGE HEADER ─── */
+  .page-header { text-align: center; margin-bottom: 64px; }
+  .page-header h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    letter-spacing: 6px;
+    background: var(--grad-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .page-header p {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 2px;
+    margin-top: 6px;
+  }
+
+  /* ─── GRID ─── */
+  .screens-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 56px 40px;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  .screen-wrap { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .screen-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+
+  /* ─── PHONE SHELL ─── */
+  .phone {
+    width: 320px;
+    min-height: 640px;
+    background: var(--bg-deep);
+    border-radius: 44px;
+    border: 1.5px solid var(--border);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,0.04),
+      0 32px 80px rgba(0,0,0,0.7),
+      0 0 60px rgba(100,100,200,0.08) inset;
+  }
+
+  /* Status bar */
+  .sb {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 24px 6px;
+    font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text-dim);
+    flex-shrink: 0;
+  }
+  .sb-r { display: flex; gap: 5px; align-items: center; }
+  .sb-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--text-dim); }
+
+  /* ─── REUSABLE COMPONENTS ─── */
+  .btn-primary {
+    background: var(--grad-accent);
+    color: #000;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 14px;
+    border-radius: 16px;
+    text-align: center;
+    letter-spacing: 0.3px;
+  }
+  .btn-secondary {
+    background: var(--surface2);
+    border: 1.5px solid var(--border);
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 13px;
+    border-radius: 16px;
+    text-align: center;
+  }
+  .card {
+    background: var(--grad-card);
+    border: 1px solid var(--border-dim);
+    border-radius: 18px;
+    padding: 14px 16px;
+  }
+  .card-glow {
+    background: var(--grad-card);
+    border: 1px solid var(--glow-border);
+    border-radius: 18px;
+    padding: 14px 16px;
+    box-shadow: 0 0 20px rgba(200,255,0,0.06);
+  }
+  .section-hdr {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px 8px;
+  }
+  .section-lbl {
+    font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 1.5px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+  .section-link { font-size: 11px; color: var(--accent); }
+
+  .divider {
+    display: flex; align-items: center; gap: 10px;
+    color: var(--text-muted); font-size: 11px; font-family: 'JetBrains Mono', monospace;
+  }
+  .divider::before, .divider::after { content:''; flex:1; height:1px; background: var(--border-dim); }
+
+  /* Bottom nav */
+  .bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    padding: 12px 16px 22px;
+    border-top: 1px solid var(--border-dim);
+    background: rgba(11,11,24,0.95);
+    backdrop-filter: blur(10px);
+    flex-shrink: 0;
+  }
+  .nav-item {
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+    font-size: 9px; font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.5px; color: var(--text-dim);
+  }
+  .nav-item.active { color: var(--accent); }
+  .nav-icon { font-size: 16px; }
+  .nav-active-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--accent); }
+
+  /* mini pills */
+  .pill { display: inline-block; padding: 5px 12px; border-radius: 20px; font-size: 11px; }
+  .pill-success { background: rgba(0,230,118,0.12); border:1px solid rgba(0,230,118,0.25); color: var(--success); }
+  .pill-danger  { background: var(--danger-dim);    border:1px solid rgba(255,64,64,0.25);  color: var(--danger);  }
+  .pill-accent  { background: var(--accent-dim);    border:1px solid rgba(200,255,0,0.3);   color: var(--accent);  }
+  .pill-warn    { background: rgba(255,170,0,0.10); border:1px solid rgba(255,170,0,0.25);  color: var(--warn);    }
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     01 SPLASH
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  .splash-phone {
+    min-height: 640px;
+    background: radial-gradient(ellipse at 50% 30%, #1e1e50 0%, #0b0b18 55%, #08080f 100%);
+  }
+  .splash-body {
+    flex: 1;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 18px;
+    position: relative;
+  }
+  /* glow orb behind logo */
+  .splash-body::before {
+    content: '';
+    position: absolute;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,255,0,0.12) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -60%);
+  }
+  .splash-logo {
+    width: 76px; height: 76px;
+    border-radius: 22px;
+    border: 2px solid var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(200,255,0,0.06);
+    box-shadow: 0 0 30px rgba(200,255,0,0.2);
+    position: relative;
+    z-index: 1;
+  }
+  .splash-logo svg { width: 36px; height: 36px; }
+  .splash-word {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 38px; letter-spacing: 8px;
+    background: var(--grad-accent);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    position: relative; z-index: 1;
+  }
+  .splash-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 2.5px;
+    color: var(--text-dim); z-index: 1;
+  }
+  .splash-bar {
+    position: absolute; bottom: 44px;
+    width: 60px; height: 2px;
+    background: var(--border);
+    border-radius: 2px; overflow: hidden;
+  }
+  .splash-bar::after {
+    content: '';
+    position: absolute; left: 0; top: 0;
+    width: 55%; height: 100%;
+    background: var(--accent); border-radius: 2px;
+  }
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     02 WELCOME
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  .welcome-hero {
+    height: 230px;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: linear-gradient(160deg, #1c1c48 0%, #0e0e28 60%, #0a0a1e 100%);
+  }
+  /* abstract figure silhouette */
+  .welcome-hero-art {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .welcome-hero-art svg { opacity: 0.18; }
+  .welcome-hero-gradient {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 80px;
+    background: linear-gradient(0deg, var(--bg-deep) 0%, transparent 100%);
+  }
+  .welcome-hero-badge {
+    position: absolute; top: 18px; left: 20px;
+    background: var(--accent);
+    color: #000; font-size: 9px; font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    padding: 4px 10px; border-radius: 6px; letter-spacing: 1px;
+  }
+  .welcome-body {
+    padding: 24px 22px 28px;
+    display: flex; flex-direction: column; gap: 14px; flex: 1;
+  }
+  .welcome-h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px; letter-spacing: 2px; line-height: 1;
+  }
+  .welcome-h1 span { color: var(--accent); }
+  .welcome-sub { font-size: 13px; color: var(--text-dim); line-height: 1.55; }
+  .social-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+  }
+  .social-btn {
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 12px; padding: 10px 8px;
+    display: flex; align-items: center; justify-content: center; gap: 7px;
+    font-size: 12px; font-weight: 500;
+  }
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     03 ONBOARDING
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  .onboard-top {
+    padding: 16px 22px 14px; flex-shrink: 0;
+    background: linear-gradient(180deg, rgba(28,28,72,0.6) 0%, transparent 100%);
+  }
+  .progress-track {
+    height: 3px; background: var(--border-dim); border-radius: 3px; overflow: hidden; margin-bottom: 22px;
+  }
+  .progress-fill { height: 100%; background: var(--grad-accent); border-radius: 3px; width: 33%; }
+  .onboard-step { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--text-dim); letter-spacing:1px; margin-bottom:6px; }
+  .onboard-q { font-family:'Bebas Neue',sans-serif; font-size:26px; letter-spacing:1px; line-height:1.1; }
+  .option-list { padding: 0 18px; display: flex; flex-direction: column; gap: 9px; flex:1; }
+  .opt {
+    background: var(--grad-card); border: 1.5px solid var(--border-dim);
+    border-radius: 16px; padding: 14px 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .opt.sel {
+    border-color: var(--accent);
+    background: linear-gradient(135deg, rgba(200,255,0,0.08) 0%, var(--surface) 60%);
+    box-shadow: 0 0 16px rgba(200,255,0,0.08);
+  }
+  .opt-icon {
+    width: 38px; height: 38px; border-radius: 12px;
+    background: var(--surface3); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 17px; flex-shrink: 0;
+  }
+  .opt.sel .opt-icon { background: rgba(200,255,0,0.12); border-color: rgba(200,255,0,0.3); }
+  .opt-label { font-size: 14px; font-weight: 600; }
+  .opt-sub { font-size: 11px; color: var(--text-dim); margin-top: 1px; }
+  .onboard-foot { padding: 14px 18px 26px; flex-shrink:0; }
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     04 HOME
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  .home-hdr {
+    padding: 14px 20px 10px;
+    background: linear-gradient(180deg, rgba(20,20,60,0.8) 0%, transparent 100%);
+    flex-shrink: 0;
+  }
+  .home-greet { font-size:11px; color:var(--text-dim); font-family:'JetBrains Mono',monospace; letter-spacing:.5px; }
+  .home-name { font-family:'Bebas Neue',sans-serif; font-size:26px; letter-spacing:1px; margin-top:2px; }
+  .home-name span { color: var(--accent); }
+  .home-scroll { flex:1; overflow:hidden; padding:0 18px; display:flex; flex-direction:column; gap:12px; }
+
+  /* CTA upload card */
+  .upload-cta {
+    border-radius: 20px;
+    padding: 22px 20px;
+    position: relative; overflow: hidden;
+    background: linear-gradient(135deg, #1e1e58 0%, #14143a 60%, #0e0e28 100%);
+    border: 1px solid rgba(200,255,0,0.25);
+    box-shadow: 0 0 30px rgba(200,255,0,0.06) inset;
+  }
+  .upload-cta::after {
+    content: '';
+    position: absolute; right: -30px; top: -30px;
+    width: 120px; height: 120px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,255,0,0.12) 0%, transparent 70%);
+  }
+  .cta-lbl { font-size:10px; font-family:'JetBrains Mono',monospace; color:var(--text-dim); letter-spacing:1px; margin-bottom:6px; }
+  .cta-title { font-family:'Bebas Neue',sans-serif; font-size:24px; letter-spacing:1.5px; line-height:1; margin-bottom:16px; }
+  .cta-btn-inner {
+    background: var(--grad-accent);
+    color: #000; font-weight:700; font-size:12px;
+    padding: 9px 18px; border-radius: 10px; display:inline-block;
+    font-family:'DM Sans',sans-serif;
+  }
+
+  .stats-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .stat-c {
+    background: var(--grad-card); border:1px solid var(--border-dim);
+    border-radius:16px; padding:14px 16px;
+  }
+  .stat-lbl { font-size:10px; color:var(--text-dim); font-family:'JetBrains Mono',monospace; letter-spacing:.5px; margin-bottom:6px; }
+  .stat-val { font-family:'Bebas Neue',sans-serif; font-size:26px; letter-spacing:1px; }
+  .stat-val small { font-size:12px; color:var(--text-dim); font-family:'DM Sans',sans-serif; }
+  .stat-trend { font-size:10px; color:var(--success); margin-top:3px; }
+
+  .recent-lbl { font-size:10px; color:var(--text-dim); font-family:'JetBrains Mono',monospace; letter-spacing:1px; text-transform:uppercase; }
+  .recent-card {
+    background: var(--grad-card); border:1px solid var(--border-dim);
+    border-radius:14px; padding:12px 14px;
+    display:flex; align-items:center; gap:12px;
+  }
+  .recent-thumb {
+    width:44px; height:44px; border-radius:12px;
+    background: linear-gradient(135deg, var(--surface3) 0%, var(--surface) 100%);
+    border:1px solid var(--border); display:flex; align-items:center; justify-content:center;
+    font-size:18px; flex-shrink:0;
+  }
+  .recent-info { flex:1; }
+  .recent-title { font-size:13px; font-weight:500; }
+  .recent-meta { font-size:10px; color:var(--text-dim); margin-top:2px; font-family:'JetBrains Mono',monospace; }
+  .recent-score { font-family:'Bebas Neue',sans-serif; font-size:24px; color:var(--accent); }
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     05 UPLOAD
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  .upload-nav {
+    display:flex; align-items:center; gap:12px;
+    padding:10px 18px 12px; flex-shrink:0;
+  }
+  .back-btn {
+    width:34px; height:34px; border-radius:12px;
+    background: var(--surface2); border:1px solid var(--border);
+    display:flex; align-items:center; justify-content:center; font-size:14px;
+  }
+  .pg-title { font-family:'Bebas Neue',sans-serif; font-size:20px; letter-spacing:2px; }
+
+  .drop-zone {
+    margin: 0 18px;
+    border: 2px dashed var(--border);
+    border-radius: 22px; height: 170px;
+    display: flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;
+    background: linear-gradient(135deg, rgba(200,255,0,0.03) 0%, var(--surface) 100%);
+    flex-shrink:0;
+  }
+  .drop-icon {
+    width:48px; height:48px; border-radius:14px;
+    background: rgba(200,255,0,0.08); border:1.5px solid rgba(200,255,0,0.25);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 0 16px rgba(200,255,0,0.08);
+  }
+  .drop-txt { font-size:13px; font-weight:600; }
+  .drop-sub { font-size:11px; color:var(--text-dim); }
+
+  .or-divider {
+    display:flex; align-items:center; gap:10px;
+    padding:0 18px; color:var(--text-muted); font-size:11px;
+    font-family:'JetBrains Mono',monospace; flex-shrink:0; margin:8px 0;
+  }
+  .or-divider::before,.or-divider::after { content:''; flex:1; height:1px; background:var(--border-dim); }
+
+  .record-btn {
+    margin:0 18px;
+    background: var(--surface2); border:1.5px solid var(--border);
+    border-radius:16px; padding:13px;
+    display:flex; align-items:center; justify-content:center; gap:10px;
+    flex-shrink:0;
+  }
+  .rec-dot { width:10px; height:10px; border-radius:50%; background:var(--danger); box-shadow:0 0 8px rgba(255,64,64,0.5); }
+  .rec-txt { font-size:14px; font-weight:500; }
+
+  .ctx-section { padding:12px 18px 0; display:flex; flex-direction:column; gap:8px; flex:1; overflow:hidden; }
+  .ctx-lbl { font-size:10px; color:var(--text-dim); font-family:'JetBrains Mono',monospace; letter-spacing:1px; text-transform:uppercase; }
+  .pill-row { display:flex; gap:7px; flex-wrap:wrap; }
+  .ctx-pill {
+    background: var(--surface2); border:1.5px solid var(--border);
+    border-radius:20px; padding:6px 14px; font-size:12px;
+  }
+  .ctx-pill.on { border-color:var(--accent); color:var(--accent); background:rgba(200,255,0,0.07); }
+  .upload-foot { padding:12px 18px 24px; flex-shrink:0; }
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     06 PROCESSING
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  .proc-body {
+    flex:1; display:flex; flex-direction:column;
+    align-items:center; justify-content:center;
+    gap:20px; padding:30px;
+    background: radial-gradient(ellipse at 50% 30%, rgba(28,28,80,0.6) 0%, transparent 60%);
+  }
+  .proc-ring {
+    width:88px; height:88px; border-radius:50%;
+    border:3px solid var(--border);
+    border-top-color:var(--accent);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 0 24px rgba(200,255,0,0.15);
+  }
+  .proc-h { font-family:'Bebas Neue',sans-serif; font-size:28px; letter-spacing:3px; }
+  .proc-sub { font-size:12px; color:var(--text-dim); margin-top:4px; }
+  .proc-progress { width:100%; height:4px; background:var(--border-dim); border-radius:4px; overflow:hidden; }
+  .proc-progress-fill { width:55%; height:100%; background:var(--grad-accent); border-radius:4px; }
+  .proc-pct { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text-dim); }
+  .proc-log {
+    width:100%; background:var(--grad-card);
+    border:1px solid var(--border-dim); border-radius:16px; padding:14px 16px;
+  }
+  .proc-log-title { font-size:10px; font-family:'JetBrains Mono',monospace; letter-spacing:1px; color:var(--accent); margin-bottom:8px; }
+  .proc-log-item { font-size:11px; color:var(--text-dim); line-height:1.9; }
+  .proc-log-item.done { color:var(--success); }
+  .proc-log-item.active { color:var(--accent); }
+  .proc-log-item.pending { color:var(--text-muted); }
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     07 RESULTS (keep existing layout)
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  .video-section {
+    position:relative; width:100%; height:230px;
+    background:#000; overflow:hidden; flex-shrink:0;
+  }
+  .video-bg {
+    position:absolute; inset:0;
+    background: linear-gradient(180deg, #12182a 0%, #0a1018 60%, #060a10 100%);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .court-svg { position:absolute; inset:0; opacity:0.1; }
+  .skel-wrap { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; }
+  .err-ring {
+    position:absolute; border-radius:50%;
+    background:rgba(255,64,64,0.12);
+    border:1.5px solid rgba(255,64,64,0.6);
+    animation:pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{transform:scale(1);opacity:1;} 50%{transform:scale(1.15);opacity:.6;} }
+  .err-label {
+    position:absolute; font-size:9px; font-weight:700;
+    font-family:'JetBrains Mono',monospace;
+    background:rgba(255,64,64,0.9); color:#fff;
+    padding:3px 8px; border-radius:4px; letter-spacing:.5px;
+  }
+  .warn-label {
+    position:absolute; font-size:9px; font-weight:700;
+    font-family:'JetBrains Mono',monospace;
+    background:rgba(255,170,0,0.9); color:#000;
+    padding:3px 8px; border-radius:4px;
+  }
+  .vid-controls {
+    position:absolute; bottom:0; left:0; right:0;
+    background:linear-gradient(0deg,rgba(0,0,0,0.95) 0%,transparent 100%);
+    padding:8px 14px 10px;
+  }
+  .timeline { width:100%; height:3px; background:rgba(255,255,255,0.12); border-radius:3px; position:relative; margin-bottom:8px; }
+  .tl-fill { height:100%; width:38%; background:var(--accent); border-radius:3px; }
+  .tl-thumb { position:absolute; top:50%; left:38%; transform:translate(-50%,-50%); width:10px; height:10px; border-radius:50%; background:var(--accent); box-shadow:0 0 8px var(--accent); }
+  .tl-mark { position:absolute; top:-3px; width:2px; height:9px; border-radius:2px; background:var(--danger); transform:translateX(-50%); }
+  .tl-mark.w { background:var(--warn); }
+  .ctrl-row { display:flex; align-items:center; justify-content:space-between; }
+  .play-btn { width:28px; height:28px; background:var(--grad-accent); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:10px; color:#000; }
+  .ctrl-time { font-family:'JetBrains Mono',monospace; font-size:10px; color:rgba(255,255,255,0.6); }
+  .speed-badge { background:rgba(255,255,255,0.1); font-size:9px; font-family:'JetBrains Mono',monospace; padding:2px 7px; border-radius:4px; color:#fff; }
+
+  .mode-bar { display:flex; background:rgba(0,0,0,0.6); border-bottom:1px solid var(--border-dim); }
+  .mode-tab { flex:1; text-align:center; padding:8px 0; font-size:10px; font-family:'JetBrains Mono',monospace; color:var(--text-dim); letter-spacing:.5px; }
+  .mode-tab.on { color:var(--accent); border-bottom:2px solid var(--accent); }
+
+  .score-strip {
+    display:flex; align-items:center; padding:14px 18px;
+    border-bottom:1px solid var(--border-dim); gap:14px; flex-shrink:0;
+    background: linear-gradient(135deg, rgba(20,20,58,0.8) 0%, transparent 100%);
+  }
+  .score-ring {
+    width:56px; height:56px; border-radius:50%;
+    border:2.5px solid var(--accent);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    box-shadow:0 0 16px rgba(200,255,0,0.2); flex-shrink:0;
+  }
+  .score-num { font-family:'Bebas Neue',sans-serif; font-size:22px; color:var(--accent); line-height:1; }
+  .score-den { font-size:8px; color:var(--text-dim); font-family:'JetBrains Mono',monospace; }
+  .score-tech { font-size:10px; color:var(--text-dim); font-family:'JetBrains Mono',monospace; letter-spacing:.5px; }
+  .score-ttl { font-family:'Bebas Neue',sans-serif; font-size:18px; letter-spacing:1px; margin:1px 0; }
+
+  .ts-list { padding:0 16px 10px; display:flex; flex-direction:column; gap:8px; }
+  .ts-card {
+    border-radius:14px; padding:12px 14px;
+    display:flex; align-items:flex-start; gap:12px;
+    position:relative; overflow:hidden;
+  }
+  .ts-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; border-radius:14px 0 0 14px; }
+  .ts-e { background:linear-gradient(135deg,rgba(255,64,64,0.07) 0%,var(--surface2) 55%); border:1px solid rgba(255,64,64,0.2); }
+  .ts-e::before { background:var(--danger); }
+  .ts-w { background:linear-gradient(135deg,rgba(255,170,0,0.07) 0%,var(--surface2) 55%); border:1px solid rgba(255,170,0,0.2); }
+  .ts-w::before { background:var(--warn); }
+  .ts-g { background:linear-gradient(135deg,rgba(0,230,118,0.05) 0%,var(--surface2) 55%); border:1px solid rgba(0,230,118,0.15); }
+  .ts-g::before { background:var(--success); }
+  .ts-thumb { width:52px; height:42px; border-radius:8px; background:var(--surface); border:1px solid var(--border-dim); display:flex; align-items:center; justify-content:center; flex-shrink:0; position:relative; overflow:hidden; font-size:18px; }
+  .ts-ttime { position:absolute; bottom:2px; right:3px; font-size:7px; font-family:'JetBrains Mono',monospace; color:rgba(255,255,255,0.5); background:rgba(0,0,0,0.7); padding:1px 4px; border-radius:3px; }
+  .ts-info { flex:1; }
+  .ts-toprow { display:flex; align-items:center; justify-content:space-between; margin-bottom:3px; }
+  .ts-t { font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:600; }
+  .te .ts-t { color:var(--danger); } .tw .ts-t { color:var(--warn); } .tg .ts-t { color:var(--success); }
+  .ts-part { font-size:11px; font-weight:600; letter-spacing:.3px; }
+  .ts-desc { font-size:11px; color:var(--text-dim); line-height:1.45; margin-top:2px; }
+  .ts-jump { font-size:9px; font-family:'JetBrains Mono',monospace; margin-top:4px; display:inline-block; }
+  .te .ts-jump { color:var(--danger); } .tw .ts-jump { color:var(--warn); } .tg .ts-jump { color:var(--success); }
+
+  .bdown { padding:0 18px 12px; display:flex; flex-direction:column; gap:8px; }
+  .bd-row { display:flex; align-items:center; gap:10px; }
+  .bd-name { font-size:11px; width:76px; flex-shrink:0; }
+  .bd-bg { flex:1; height:6px; background:var(--border-dim); border-radius:3px; overflow:hidden; }
+  .bd-fill { height:100%; border-radius:3px; }
+  .bd-sc { font-size:11px; font-family:'JetBrains Mono',monospace; width:28px; text-align:right; flex-shrink:0; }
+
+  .advice-wrap { padding:0 16px 14px; }
+  .advice-c { background:var(--grad-card); border:1px solid var(--border-dim); border-radius:16px; padding:14px 16px; }
+  .adv-hdr { display:flex; align-items:center; gap:8px; margin-bottom:10px; }
+  .adv-icon { width:28px; height:28px; background:var(--accent-dim); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:13px; }
+  .adv-title { font-size:13px; font-weight:600; }
+  .adv-items { display:flex; flex-direction:column; gap:7px; }
+  .adv-item { display:flex; gap:8px; align-items:flex-start; }
+  .adv-dot { width:5px; height:5px; border-radius:50%; background:var(--accent); margin-top:5px; flex-shrink:0; }
+  .adv-txt { font-size:11px; color:var(--text-dim); line-height:1.5; }
+
+  .res-cta { padding:10px 16px 26px; display:flex; gap:10px; }
+  .btn-ghost { background:var(--surface2); border:1.5px solid var(--border); color:var(--text); padding:13px 14px; border-radius:14px; font-size:13px; text-align:center; white-space:nowrap; }
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     08 HISTORY
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  .hist-hdr { padding:14px 20px 10px; flex-shrink:0; border-bottom:1px solid var(--border-dim); background:linear-gradient(180deg,rgba(20,20,60,0.7) 0%,transparent 100%); }
+  .tab-row { display:flex; background:var(--surface2); border-radius:14px; padding:3px; margin-top:12px; }
+  .tab { flex:1; text-align:center; padding:8px 0; font-size:12px; border-radius:11px; color:var(--text-dim); }
+  .tab.on { background:var(--grad-accent); color:#000; font-weight:700; }
+  .chart-wrap { margin:14px 18px 0; background:var(--grad-card); border:1px solid var(--border-dim); border-radius:18px; padding:16px; flex-shrink:0; }
+  .chart-lbl { font-size:10px; color:var(--text-dim); font-family:'JetBrains Mono',monospace; letter-spacing:1px; margin-bottom:12px; }
+  .chart-bars { display:flex; align-items:flex-end; gap:8px; height:60px; }
+  .cb-wrap { flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; }
+  .cb-bg { width:100%; flex:1; background:var(--surface3); border-radius:6px; display:flex; flex-direction:column; justify-content:flex-end; overflow:hidden; }
+  .cb-fill { border-radius:6px; background:var(--grad-accent); opacity:.6; }
+  .cb-fill.latest { opacity:1; box-shadow:0 0 12px rgba(200,255,0,0.3); }
+  .cb-date { font-size:8px; color:var(--text-muted); font-family:'JetBrains Mono',monospace; }
+  .hist-list { flex:1; overflow:hidden; padding:12px 18px; display:flex; flex-direction:column; gap:9px; }
+  .hist-card { background:var(--grad-card); border:1px solid var(--border-dim); border-radius:16px; padding:13px; display:flex; align-items:center; gap:12px; }
+  .hist-thumb { width:52px; height:52px; border-radius:14px; background:linear-gradient(135deg,var(--surface3),var(--surface)); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:20px; }
+  .hist-info { flex:1; }
+  .hist-title { font-size:13px; font-weight:500; }
+  .hist-meta { font-size:10px; color:var(--text-dim); margin-top:2px; font-family:'JetBrains Mono',monospace; }
+  .hist-right { display:flex; flex-direction:column; align-items:flex-end; gap:4px; }
+  .hist-score { font-family:'Bebas Neue',sans-serif; font-size:26px; color:var(--accent); line-height:1; }
+  .hist-delta { font-size:10px; }
+  .delta-up { color:var(--success); }
+  .delta-dn { color:var(--danger); }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>VOLLYFORM</h1>
+  <p>// wireframe suite · phase 0/1 · 8 screens</p>
+</div>
+
+<div class="screens-grid">
+
+  <!-- ══════════════════════════════
+       01 SPLASH
+  ══════════════════════════════ -->
+  <div class="screen-wrap">
+    <div class="screen-label">01 · Splash Screen</div>
+    <div class="phone splash-phone" style="min-height:640px;background:radial-gradient(ellipse at 50% 28%,#1e1e52 0%,#0d0d22 50%,#08080f 100%);">
+      <div class="sb"><span>9:41</span><div class="sb-r"><div class="sb-dot"></div><div class="sb-dot"></div><div class="sb-dot"></div></div></div>
+      <div class="splash-body">
+        <div class="splash-logo">
+          <svg viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="8" stroke="#c8ff00" stroke-width="2"/><line x1="18" y1="10" x2="18" y2="4" stroke="#c8ff00" stroke-width="2" stroke-linecap="round"/><line x1="10" y1="18" x2="4" y2="18" stroke="#c8ff00" stroke-width="2" stroke-linecap="round" opacity=".4"/><line x1="26" y1="18" x2="32" y2="18" stroke="#c8ff00" stroke-width="2" stroke-linecap="round" opacity=".4"/></svg>
+        </div>
+        <div class="splash-word">VOLLYFORM</div>
+        <div class="splash-tag">ANALYSE · IMPROVE · PERFORM</div>
+        <div class="splash-bar"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════
+       02 WELCOME
+  ══════════════════════════════ -->
+  <div class="screen-wrap">
+    <div class="screen-label">02 · Welcome Screen</div>
+    <div class="phone">
+      <div class="sb"><span>9:41</span><div class="sb-r"><div class="sb-dot"></div><div class="sb-dot"></div><div class="sb-dot"></div></div></div>
+      <div class="welcome-hero">
+        <div class="welcome-hero-art">
+          <svg width="160" height="200" viewBox="0 0 160 200" fill="none">
+            <circle cx="80" cy="30" r="16" stroke="white" stroke-width="2"/>
+            <line x1="80" y1="46" x2="80" y2="100" stroke="white" stroke-width="2"/>
+            <line x1="80" y1="65" x2="45" y2="50" stroke="white" stroke-width="2"/>
+            <line x1="80" y1="65" x2="115" y2="42" stroke="white" stroke-width="2"/>
+            <line x1="80" y1="100" x2="60" y2="150" stroke="white" stroke-width="2"/>
+            <line x1="80" y1="100" x2="100" y2="150" stroke="white" stroke-width="2"/>
+            <line x1="60" y1="150" x2="55" y2="185" stroke="white" stroke-width="2"/>
+            <line x1="100" y1="150" x2="105" y2="185" stroke="white" stroke-width="2"/>
+            <circle cx="115" cy="40" r="7" stroke="white" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="welcome-hero-gradient"></div>
+        <div class="welcome-hero-badge">AI POWERED</div>
+      </div>
+      <div class="welcome-body">
+        <div>
+          <div class="welcome-h1">TRAIN LIKE A <span>PRO</span></div>
+          <div class="welcome-sub" style="margin-top:8px;">Upload your volleyball footage and get instant AI-powered technique feedback.</div>
+        </div>
+        <div class="btn-primary">Create Account</div>
+        <div class="divider">or continue with</div>
+        <div class="social-row">
+          <div class="social-btn">🍎 Apple</div>
+          <div class="social-btn">🔵 Google</div>
+        </div>
+        <div style="text-align:center;font-size:12px;color:var(--text-dim);margin-top:2px;">Already have an account? <span style="color:var(--accent);">Sign In</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════
+       03 ONBOARDING
+  ══════════════════════════════ -->
+  <div class="screen-wrap">
+    <div class="screen-label">03 · Onboarding — Skill Level</div>
+    <div class="phone">
+      <div class="sb"><span>9:41</span><div class="sb-r"><div class="sb-dot"></div><div class="sb-dot"></div><div class="sb-dot"></div></div></div>
+      <div class="onboard-top">
+        <div class="progress-track"><div class="progress-fill"></div></div>
+        <div class="onboard-step">STEP 1 OF 5</div>
+        <div class="onboard-q">WHAT'S YOUR SKILL LEVEL?</div>
+      </div>
+      <div class="option-list">
+        <div class="opt sel">
+          <div class="opt-icon">🏐</div>
+          <div><div class="opt-label">Beginner</div><div class="opt-sub">Learning the basics</div></div>
+        </div>
+        <div class="opt">
+          <div class="opt-icon">⚡</div>
+          <div><div class="opt-label">Intermediate</div><div class="opt-sub">Club / recreational league</div></div>
+        </div>
+        <div class="opt">
+          <div class="opt-icon">🏆</div>
+          <div><div class="opt-label">Advanced</div><div class="opt-sub">Competitive / semi-pro</div></div>
+        </div>
+        <div class="opt">
+          <div class="opt-icon">🎽</div>
+          <div><div class="opt-label">Elite</div><div class="opt-sub">Professional / national level</div></div>
+        </div>
+      </div>
+      <div class="onboard-foot"><div class="btn-primary">Continue</div></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════
+       04 HOME
+  ══════════════════════════════ -->
+  <div class="screen-wrap">
+    <div class="screen-label">04 · Home Screen</div>
+    <div class="phone">
+      <div class="sb"><span>9:41</span><div class="sb-r"><div class="sb-dot"></div><div class="sb-dot"></div><div class="sb-dot"></div></div></div>
+      <div class="home-hdr">
+        <div class="home-greet">GOOD MORNING</div>
+        <div class="home-name">ALEX <span>K.</span></div>
+      </div>
+      <div class="home-scroll">
+        <div class="upload-cta">
+          <div class="cta-lbl">READY TO IMPROVE?</div>
+          <div class="cta-title">ANALYSE YOUR TECHNIQUE</div>
+          <div class="cta-btn-inner">↑ Upload Video</div>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-c">
+            <div class="stat-lbl">AVG SCORE</div>
+            <div class="stat-val">74<small>/100</small></div>
+            <div class="stat-trend">↑ +6 this week</div>
+          </div>
+          <div class="stat-c">
+            <div class="stat-lbl">SESSIONS</div>
+            <div class="stat-val">12<small> total</small></div>
+            <div class="stat-trend" style="color:var(--accent2);">3 this week</div>
+          </div>
+        </div>
+        <div class="recent-lbl">RECENT</div>
+        <div class="recent-card">
+          <div class="recent-thumb">🏐</div>
+          <div class="recent-info"><div class="recent-title">Spike Approach</div><div class="recent-meta">2h ago · 0:23</div></div>
+          <div class="recent-score">74</div>
+        </div>
+        <div class="recent-card">
+          <div class="recent-thumb">🏐</div>
+          <div class="recent-info"><div class="recent-title">Overhand Serve</div><div class="recent-meta">Yesterday · 0:18</div></div>
+          <div class="recent-score">68</div>
+        </div>
+      </div>
+      <div class="bottom-nav">
+        <div class="nav-item active"><div class="nav-icon">⌂</div><div>HOME</div><div class="nav-active-dot"></div></div>
+        <div class="nav-item"><div class="nav-icon">↑</div><div>UPLOAD</div></div>
+        <div class="nav-item"><div class="nav-icon">≡</div><div>HISTORY</div></div>
+        <div class="nav-item"><div class="nav-icon">◯</div><div>PROFILE</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════
+       05 UPLOAD
+  ══════════════════════════════ -->
+  <div class="screen-wrap">
+    <div class="screen-label">05 · Upload Page</div>
+    <div class="phone">
+      <div class="sb"><span>9:41</span><div class="sb-r"><div class="sb-dot"></div><div class="sb-dot"></div><div class="sb-dot"></div></div></div>
+      <div class="upload-nav">
+        <div class="back-btn">←</div>
+        <div class="pg-title">NEW ANALYSIS</div>
+      </div>
+      <div class="drop-zone">
+        <div class="drop-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8ff00" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        </div>
+        <div class="drop-txt">Tap to select video</div>
+        <div class="drop-sub">MP4, MOV · max 2 min</div>
+      </div>
+      <div class="or-divider">or record now</div>
+      <div class="record-btn">
+        <div class="rec-dot"></div>
+        <div class="rec-txt">Record Video</div>
+      </div>
+      <div class="ctx-section">
+        <div class="ctx-lbl">TECHNIQUE</div>
+        <div class="pill-row">
+          <div class="ctx-pill on">Spike</div>
+          <div class="ctx-pill">Serve</div>
+          <div class="ctx-pill">Receive</div>
+          <div class="ctx-pill">Set</div>
+        </div>
+        <div class="ctx-lbl" style="margin-top:4px;">CAMERA ANGLE</div>
+        <div class="pill-row">
+          <div class="ctx-pill on">Side-on</div>
+          <div class="ctx-pill">Front</div>
+          <div class="ctx-pill">Behind</div>
+        </div>
+      </div>
+      <div class="upload-foot"><div class="btn-primary">Analyse →</div></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════
+       06 PROCESSING
+  ══════════════════════════════ -->
+  <div class="screen-wrap">
+    <div class="screen-label">06 · Processing Screen</div>
+    <div class="phone">
+      <div class="sb"><span>9:41</span><div class="sb-r"><div class="sb-dot"></div><div class="sb-dot"></div><div class="sb-dot"></div></div></div>
+      <div class="proc-body">
+        <div class="proc-ring"><div style="font-size:24px;">🏐</div></div>
+        <div style="text-align:center;">
+          <div class="proc-h">ANALYSING...</div>
+          <div class="proc-sub">Extracting pose keypoints</div>
+        </div>
+        <div class="proc-progress"><div class="proc-progress-fill"></div></div>
+        <div class="proc-pct">55% — Comparing with pro data</div>
+        <div class="proc-log">
+          <div class="proc-log-title">PROCESSING STEPS</div>
+          <div class="proc-log-item done">✓ Video received</div>
+          <div class="proc-log-item done">✓ Pose detection complete</div>
+          <div class="proc-log-item active">→ Comparing keyframes...</div>
+          <div class="proc-log-item pending">○ Generating report</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════
+       07 RESULTS
+  ══════════════════════════════ -->
+  <div class="screen-wrap">
+    <div class="screen-label">07 · Results Page</div>
+    <div class="phone">
+      <div class="sb"><span>9:41</span><div class="sb-r"><div class="sb-dot"></div><div class="sb-dot"></div><div class="sb-dot"></div></div></div>
+      <div class="upload-nav" style="border-bottom:1px solid var(--border-dim);padding-bottom:12px;">
+        <div class="back-btn">←</div>
+        <div class="pg-title">YOUR RESULTS</div>
+        <div style="background:var(--grad-accent);color:#000;font-size:11px;font-weight:700;padding:6px 14px;border-radius:10px;">SAVE</div>
+      </div>
+
+      <!-- VIDEO -->
+      <div class="video-section">
+        <div class="video-bg">
+          <svg class="court-svg" viewBox="0 0 320 230" preserveAspectRatio="none" fill="none">
+            <rect x="20" y="15" width="280" height="200" stroke="white" stroke-width="1.5"/>
+            <line x1="160" y1="15" x2="160" y2="215" stroke="white" stroke-width="1" stroke-dasharray="5 5"/>
+            <line x1="20" y1="75" x2="300" y2="75" stroke="white" stroke-width=".7"/>
+            <line x1="20" y1="155" x2="300" y2="155" stroke="white" stroke-width=".7"/>
+            <line x1="20" y1="115" x2="300" y2="115" stroke="white" stroke-width="3"/>
+          </svg>
+        </div>
+        <div class="skel-wrap">
+          <svg width="90" height="160" viewBox="0 0 90 160" fill="none">
+            <circle cx="50" cy="16" r="10" stroke="#00b4ff" stroke-width="2"/>
+            <line x1="50" y1="26" x2="48" y2="72" stroke="#00b4ff" stroke-width="2"/>
+            <line x1="48" y1="36" x2="22" y2="20" stroke="#00e676" stroke-width="2"/>
+            <line x1="22" y1="20" x2="10" y2="6" stroke="#00e676" stroke-width="2"/>
+            <line x1="48" y1="36" x2="72" y2="52" stroke="#ff4040" stroke-width="2.5"/>
+            <line x1="72" y1="52" x2="80" y2="44" stroke="#ff4040" stroke-width="2.5"/>
+            <line x1="40" y1="72" x2="56" y2="72" stroke="#00b4ff" stroke-width="2"/>
+            <line x1="40" y1="72" x2="32" y2="110" stroke="#ffaa00" stroke-width="2"/>
+            <line x1="32" y1="110" x2="28" y2="145" stroke="#00b4ff" stroke-width="2"/>
+            <line x1="56" y1="72" x2="62" y2="110" stroke="#00b4ff" stroke-width="2"/>
+            <line x1="62" y1="110" x2="64" y2="145" stroke="#00b4ff" stroke-width="2"/>
+            <circle cx="50" cy="36" r="3.5" fill="#00b4ff"/>
+            <circle cx="22" cy="20" r="3" fill="#00e676"/>
+            <circle cx="72" cy="52" r="4" fill="#ff4040"/>
+            <circle cx="48" cy="72" r="3" fill="#00b4ff"/>
+            <circle cx="32" cy="110" r="3.5" fill="#ffaa00"/>
+            <circle cx="62" cy="110" r="3" fill="#00b4ff"/>
+            <circle cx="72" cy="52" r="10" stroke="#ff4040" stroke-width="1.5" stroke-dasharray="3 3" opacity=".7"/>
+          </svg>
+          <div class="err-label" style="top:52px;right:10px;">ARM ANGLE</div>
+          <div class="warn-label" style="bottom:36px;left:8px;">KNEE BEND</div>
+        </div>
+        <div class="err-ring" style="width:26px;height:26px;right:64px;top:55px;"></div>
+        <div class="err-ring" style="width:20px;height:20px;left:54px;bottom:44px;background:rgba(255,170,0,0.12);border-color:rgba(255,170,0,0.6);"></div>
+        <div class="vid-controls">
+          <div class="timeline">
+            <div class="tl-fill"></div>
+            <div class="tl-thumb"></div>
+            <div class="tl-mark" style="left:18%;"></div>
+            <div class="tl-mark" style="left:38%;"></div>
+            <div class="tl-mark w" style="left:60%;"></div>
+            <div class="tl-mark" style="left:80%;"></div>
+          </div>
+          <div class="ctrl-row">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div class="play-btn">▶</div>
+              <div class="ctrl-time">0:08 / 0:23</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:center;">
+              <div class="speed-badge">0.5×</div>
+              <div style="font-size:13px;color:rgba(255,255,255,0.5);">⤢</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mode toggle -->
+      <div class="mode-bar">
+        <div class="mode-tab">VIDEO</div>
+        <div class="mode-tab on">SKELETON</div>
+        <div class="mode-tab">OVERLAY</div>
+      </div>
+
+      <!-- Score strip -->
+      <div class="score-strip">
+        <div class="score-ring">
+          <div class="score-num">74</div>
+          <div class="score-den">/100</div>
+        </div>
+        <div>
+          <div class="score-tech">SPIKE APPROACH · 0:23</div>
+          <div class="score-ttl">GOOD FORM</div>
+          <div style="display:flex;gap:6px;margin-top:3px;">
+            <div class="pill pill-success" style="font-size:9px;padding:2px 8px;">✓ 3 correct</div>
+            <div class="pill pill-danger" style="font-size:9px;padding:2px 8px;">✗ 2 issues</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Timestamps -->
+      <div class="section-hdr"><div class="section-lbl">MOMENTS TO FIX</div><div class="section-link">2 issues</div></div>
+      <div class="ts-list">
+        <div class="ts-card ts-e te">
+          <div class="ts-thumb" style="background:linear-gradient(135deg,#1a0808,#0d0d0d);">💥<div class="ts-ttime">0:08</div></div>
+          <div class="ts-info">
+            <div class="ts-toprow"><div class="ts-t">0:08</div><div class="pill pill-danger" style="font-size:8px;padding:2px 7px;">HIGH</div></div>
+            <div class="ts-part">Right Arm — Contact</div>
+            <div class="ts-desc">Elbow 18° below ideal. Arm should be fully extended at impact.</div>
+            <div class="ts-jump">→ Jump to moment</div>
+          </div>
+        </div>
+        <div class="ts-card ts-w tw">
+          <div class="ts-thumb" style="background:linear-gradient(135deg,#1a1000,#0d0d0d);">⚠️<div class="ts-ttime">0:14</div></div>
+          <div class="ts-info">
+            <div class="ts-toprow"><div class="ts-t" style="color:var(--warn);">0:14</div><div class="pill pill-warn" style="font-size:8px;padding:2px 7px;">MOD</div></div>
+            <div class="ts-part">Left Knee — Landing</div>
+            <div class="ts-desc">Knee bend 12° too shallow at landing.</div>
+            <div class="ts-jump" style="color:var(--warn);">→ Jump to moment</div>
+          </div>
+        </div>
+        <div class="ts-card ts-g tg">
+          <div class="ts-thumb" style="background:linear-gradient(135deg,#001a0a,#0d0d0d);">✅<div class="ts-ttime">0:05</div></div>
+          <div class="ts-info">
+            <div class="ts-toprow"><div class="ts-t" style="color:var(--success);">0:05</div><div class="pill pill-success" style="font-size:8px;padding:2px 7px;">GREAT</div></div>
+            <div class="ts-part">Approach Footwork</div>
+            <div class="ts-desc">3-step approach timing matches pro within 0.1s.</div>
+            <div class="ts-jump" style="color:var(--success);">→ Jump to moment</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Breakdown -->
+      <div class="section-hdr"><div class="section-lbl">BODY BREAKDOWN</div></div>
+      <div class="bdown">
+        <div class="bd-row"><div class="bd-name">Arm swing</div><div class="bd-bg"><div class="bd-fill" style="width:82%;background:var(--success);"></div></div><div class="bd-sc" style="color:var(--success);">82</div></div>
+        <div class="bd-row"><div class="bd-name">Footwork</div><div class="bd-bg"><div class="bd-fill" style="width:88%;background:var(--success);"></div></div><div class="bd-sc" style="color:var(--success);">88</div></div>
+        <div class="bd-row"><div class="bd-name">Jump timing</div><div class="bd-bg"><div class="bd-fill" style="width:75%;background:var(--accent);"></div></div><div class="bd-sc" style="color:var(--accent);">75</div></div>
+        <div class="bd-row"><div class="bd-name">Contact pt.</div><div class="bd-bg"><div class="bd-fill" style="width:55%;background:var(--danger);"></div></div><div class="bd-sc" style="color:var(--danger);">55</div></div>
+        <div class="bd-row"><div class="bd-name">Landing</div><div class="bd-bg"><div class="bd-fill" style="width:68%;background:var(--warn);"></div></div><div class="bd-sc" style="color:var(--warn);">68</div></div>
+      </div>
+
+      <!-- Advice -->
+      <div class="section-hdr"><div class="section-lbl">NEXT STEPS</div></div>
+      <div class="advice-wrap">
+        <div class="advice-c">
+          <div class="adv-hdr"><div class="adv-icon">💡</div><div class="adv-title">What to work on</div></div>
+          <div class="adv-items">
+            <div class="adv-item"><div class="adv-dot"></div><div class="adv-txt">Practice wall spikes — full arm extension at contact, elbow above ear height.</div></div>
+            <div class="adv-item"><div class="adv-dot"></div><div class="adv-txt">Landing drills: knees bent >90° to protect joints and improve stability.</div></div>
+            <div class="adv-item"><div class="adv-dot" style="background:var(--success);"></div><div class="adv-txt">Approach footwork is pro-level. Keep it consistent.</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="res-cta"><div class="btn-primary" style="flex:1;border-radius:14px;">Save to History</div><div class="btn-ghost">Share</div></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════
+       08 HISTORY
+  ══════════════════════════════ -->
+  <div class="screen-wrap">
+    <div class="screen-label">08 · History & Progress</div>
+    <div class="phone">
+      <div class="sb"><span>9:41</span><div class="sb-r"><div class="sb-dot"></div><div class="sb-dot"></div><div class="sb-dot"></div></div></div>
+      <div class="hist-hdr">
+        <div class="pg-title">MY SESSIONS</div>
+        <div class="tab-row">
+          <div class="tab">Past Results</div>
+          <div class="tab on">Progress</div>
+        </div>
+      </div>
+      <div class="chart-wrap">
+        <div class="chart-lbl">OVERALL SCORE TREND</div>
+        <div class="chart-bars">
+          <div class="cb-wrap"><div class="cb-bg"><div class="cb-fill" style="height:58%;"></div></div><div class="cb-date">J5</div></div>
+          <div class="cb-wrap"><div class="cb-bg"><div class="cb-fill" style="height:62%;"></div></div><div class="cb-date">J12</div></div>
+          <div class="cb-wrap"><div class="cb-bg"><div class="cb-fill" style="height:65%;"></div></div><div class="cb-date">J19</div></div>
+          <div class="cb-wrap"><div class="cb-bg"><div class="cb-fill" style="height:70%;"></div></div><div class="cb-date">J26</div></div>
+          <div class="cb-wrap"><div class="cb-bg"><div class="cb-fill latest" style="height:74%;"></div></div><div class="cb-date">F2</div></div>
+        </div>
+      </div>
+      <div class="hist-list">
+        <div class="section-lbl" style="padding:0;">RECENT SESSIONS</div>
+        <div class="hist-card">
+          <div class="hist-thumb">🏐</div>
+          <div class="hist-info"><div class="hist-title">Spike Approach</div><div class="hist-meta">Feb 22 · 0:23</div></div>
+          <div class="hist-right"><div class="hist-score">74</div><div class="hist-delta delta-up">↑ +6</div></div>
+        </div>
+        <div class="hist-card">
+          <div class="hist-thumb">🏐</div>
+          <div class="hist-info"><div class="hist-title">Overhand Serve</div><div class="hist-meta">Feb 21 · 0:18</div></div>
+          <div class="hist-right"><div class="hist-score">68</div><div class="hist-delta delta-up">↑ +3</div></div>
+        </div>
+        <div class="hist-card">
+          <div class="hist-thumb">🏐</div>
+          <div class="hist-info"><div class="hist-title">Spike Approach</div><div class="hist-meta">Feb 19 · 0:31</div></div>
+          <div class="hist-right"><div class="hist-score">65</div><div class="hist-delta delta-dn">↓ -2</div></div>
+        </div>
+      </div>
+      <div class="bottom-nav">
+        <div class="nav-item"><div class="nav-icon">⌂</div><div>HOME</div></div>
+        <div class="nav-item"><div class="nav-icon">↑</div><div>UPLOAD</div></div>
+        <div class="nav-item active"><div class="nav-icon">≡</div><div>HISTORY</div><div class="nav-active-dot"></div></div>
+        <div class="nav-item"><div class="nav-icon">◯</div><div>PROFILE</div></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div style="text-align:center;margin-top:64px;font-family:'JetBrains Mono',monospace;font-size:10px;color:#2e2e55;letter-spacing:2px;">
+  VOLLYFORM · WIREFRAME SUITE · 8 SCREENS · PHASE 0/1
+</div>
+
+</body>
+</html>
